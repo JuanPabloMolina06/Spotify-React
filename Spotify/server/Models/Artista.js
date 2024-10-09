@@ -5,6 +5,6 @@ const artistasSchema = new mongoose.Schema({
     nome: {type: String, required: true}
 })
 
-const artista = mongoose.model('Artista', artistasSchema);
+const artista = mongoose.model('artistas', artistasSchema);
 
 export default artista;
