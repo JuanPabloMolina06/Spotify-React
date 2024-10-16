@@ -17,6 +17,7 @@ function App() {
     .then(res => res.json())
     .then(data => setArtistas(data))
     .catch(err => console.log(err))
+    .finally(() => console.log('Finalizou a requisição'))
   }, [])
 
   return (
@@ -32,9 +33,11 @@ function App() {
           </SideBar>
           <ConteudoPrincipal>
             {
-              artistas.map( artistas => (
+              artistas
+              .filter( artista => artista.genero === "Trap")
+              .map( artistas => (
                 <div className='w-28 h-28 bg-red-600 flex flex-col justify-center items-center'>
-                  <p>{artistas.name}</p>
+                  <p>{artistas.nome}</p>
                 </div>
               ))
             }
