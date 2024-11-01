@@ -17,7 +17,7 @@ export default function ConteudoPrincipal(){
 
     return(
         <>
-          <div className='flex flex-col justify-around items-center w-full'>
+          <div className='flex flex-col justify-around bg-cinza-claro m-3 rounded-xl items-center w-screen'>
             {
               artistas
               .filter( artista => artista.genero === "Trap")

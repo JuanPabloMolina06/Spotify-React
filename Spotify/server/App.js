@@ -2,7 +2,6 @@ import express from "express"
 import conectaNaDb from "./db.js";
 import cors from 'cors'
 import artista from "./Models/Artista.js";
-import artista from "./Models/Artista.js";
 
 const app = express();
 app.use(cors());
