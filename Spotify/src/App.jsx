@@ -1,25 +1,31 @@
-import './App.css'
 import Header from './components/Header'
 import SideBar from './components/SideBar'
 import ConteudoPrincipal from './components/ConteudoPrincipal'
 import CardsSidebar from './components/CardsSidebar'
+import { useState } from 'react'
+import { useEffect } from 'react'
+import artista from '../server/Models/Artista'
+import { Outlet } from 'react-router-dom'
+import Container from './components/Container'
 
 function App() {
+
+
 
   return (
     <>
         <Header/>
 
-        <div className='w-full h-[750px] bg-red-200 flex flex-row'>
+        <Container>
 
           <SideBar>
             <CardsSidebar/>
             <CardsSidebar/>
             <CardsSidebar/>
           </SideBar>
-          <ConteudoPrincipal/>
+          <Outlet />
 
-        </div>
+        </Container>
     </>
   )
 }

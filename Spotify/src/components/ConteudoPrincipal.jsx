@@ -1,74 +1,35 @@
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 
 export default function ConteudoPrincipal(){
+
+  const [artistas, setArtistas] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    fetch('http://localhost:3000/artistas')
+    .then(res => res.json())
+    .then(data => setArtistas(data))
+    .catch(err => console.log(err))
+    .finally(() => console.log('Finalizou a requisição'))
+  }, [])
+
     return(
         <>
-            <div className='flex flex-col justify-around items-center w-full'>
-                <div className='flex gap-20 mt-10 justify-around items-center mb-4'>
-                  <div className='w-28 h-28 bg-red-600 flex flex-col justify-center items-center'>
-                    <div className='flex flex-col items-center'>
-                      <div className='w-20 h-8 bg-cyan-400 mb-4' />
-                      <div className='w-20 h-8 bg-cyan-400' />
-                    </div>
-                  </div>
-                  <div className='w-28 h-28 bg-red-600 flex flex-col justify-center items-center'>
-                    <div className='w-20 h-8 bg-cyan-400 mb-4' />
-                    <div className='w-20 h-8 bg-cyan-400' />
-                  </div>
-                  <div className='w-28 h-28 bg-red-600 flex flex-col justify-center items-center'>
-                    <div className='w-20 h-8 bg-cyan-400 mb-4' />
-                    <div className='w-20 h-8 bg-cyan-400' />
-                  </div>
-                  <div className='w-28 h-28 bg-red-600 flex flex-col justify-center items-center'>
-                    <div className='w-20 h-8 bg-cyan-400 mb-4' />
-                    <div className='w-20 h-8 bg-cyan-400' />
-                  </div>
+          <div className='flex flex-col justify-around bg-cinza-claro m-3 rounded-xl items-center w-screen'>
+            {
+              artistas
+              .filter( artista => artista.genero === "Trap")
+              .map( artistas => (
+                <Link to={`/artistas/${artistas._id}`}>
+                <div className='w-28 h-28 bg-red-600 flex flex-col justify-center items-center'>
+                  <p>{artistas.nome}</p>
                 </div>
-
-
-                <div className='flex gap-20 justify-around items-center mb-4'>
-                  <div className='w-28 h-28 bg-red-600 flex flex-col justify-around items-center'>
-                    <div className='flex flex-col items-center'>
-                      <div className='w-20 h-8 bg-cyan-400 mb-4' />
-                      <div className='w-20 h-8 bg-cyan-400' />
-                    </div>
-                  </div>
-                  <div className='w-28 h-28 bg-red-600 flex flex-col justify-center items-center'>
-                    <div className='w-20 h-8 bg-cyan-400 mb-4' />
-                    <div className='w-20 h-8 bg-cyan-400' />
-                  </div>
-                  <div className='w-28 h-28 bg-red-600 flex flex-col justify-center items-center'>
-                    <div className='w-20 h-8 bg-cyan-400 mb-4' />
-                    <div className='w-20 h-8 bg-cyan-400' />
-                  </div>
-                  <div className='w-28 h-28 bg-red-600 flex flex-col justify-center items-center'>
-                    <div className='w-20 h-8 bg-cyan-400 mb-4' />
-                    <div className='w-20 h-8 bg-cyan-400' />
-                  </div>
-                </div>
-
-
-                <div className='flex gap-20 mb-10 justify-around items-center'>
-                  <div className='w-28 h-28 bg-red-600 flex flex-col justify-around items-center'>
-                    <div className='flex flex-col items-center'>
-                      <div className='w-20 h-8 bg-cyan-400 mb-4' />
-                      <div className='w-20 h-8 bg-cyan-400' />
-                    </div>
-                  </div>
-                  <div className='w-28 h-28 bg-red-600 flex flex-col justify-center items-center'>
-                    <div className='w-20 h-8 bg-cyan-400 mb-4' />
-                    <div className='w-20 h-8 bg-cyan-400' />
-                  </div>
-                  <div className='w-28 h-28 bg-red-600 flex flex-col justify-center items-center'>
-                    <div className='w-20 h-8 bg-cyan-400 mb-4' />
-                    <div className='w-20 h-8 bg-cyan-400' />
-                  </div>
-                  <div className='w-28 h-28 bg-red-600 flex flex-col justify-center items-center'>
-                    <div className='w-20 h-8 bg-cyan-400 mb-4' />
-                    <div className='w-20 h-8 bg-cyan-400' />
-                  </div>
-                </div>
-              </div>
+                </Link>
+              ))
+            }
+          </div>
 
                 
         </>
